@@ -1,0 +1,39 @@
+{% extends "base.html.twig" %}
+{% block title %}
+    {{ page_title }}
+{% endblock %}
+{% block body %}
+    <div class="container">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Second Name</th>
+                    <th scope="col">Number</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for dossier in dossiers %}
+                <tr>
+                    <th scope="row">{{ loop.index }}</th>
+                    <td>{{ dossier.secondName }}</td>
+                    <td>{{ dossier.id }}</td>
+                    <td>
+                        <a class="btn btn-success btn-sm" href="{{ path('dossierUpdate', {id: dossier.id}) }}">
+                            Edit
+                        </a>
+                        <a class="btn btn-danger btn-sm" href="{{ path('dossierDelete', {id: dossier.id}) }}">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">No Records</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
